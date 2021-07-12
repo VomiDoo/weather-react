@@ -1,4 +1,4 @@
-export function GetCoords (setFunction) {
+export function getCoords (setFunction) {
     navigator.geolocation.getCurrentPosition((position) => {
         const coords = [
             `${position.coords.latitude.toFixed(

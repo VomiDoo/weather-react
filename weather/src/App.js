@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { getWeatherInform } from './components/WeatherInform';
-import { PrintWeather } from "./components/PrintWeather";
-import { GetCoords } from "./components/GetLocation";
-import { History } from "./components/PrintHistory";
-import { saveHistory } from "./components/SaveHistory";
+import { getWeatherInform } from './components/getWeatherInform';
+import { Weather } from "./components/Weather";
+import { getCoords } from "./components/getCoords";
+import { History } from "./components/History";
+import { saveHistory } from "./components/saveHistory";
 import './App.css';
 
 
@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
     fetch(
-      `http://api.weatherstack.com/current?access_key=3343cd980c81f01c734791fb70856681&query=${city || 'Minsk'}`
+      `http://api.weatherstack.com/current?access_key=dcdea5b2906fa6207aed9fa0ab93b716&query=${city || 'Minsk'}`
     )
       .then((data) => data.json())
       .then((data) => {
@@ -43,7 +43,7 @@ function App() {
   };
 
   function locationHandler () {
-    GetCoords(setCity)
+    getCoords(setCity)
   };
 
   function historyHandler () {
@@ -67,8 +67,8 @@ function App() {
                 <button className="clear-local-btn btn" onClick={() => {clearHistory()}}>Clear</button>
             </div>
           </header>
-          {PrintWeather(town)}
-          {History(openHistory, historyHandler, history)}
+          <Weather town={town} />
+          <History openHistory={openHistory} historyHandler={historyHandler} history={history} />
       </div>
     </>
   )

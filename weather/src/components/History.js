@@ -1,6 +1,6 @@
-import { HistoryElement } from "./PrintHistoryElement"
+import { HistoryElement } from "./HistoryElement"
 
-export function History (openHistory, historyHandler,history ) {
+export function History ({openHistory, historyHandler,history} ) {
     return (
         <div className={`history__wrap ${openHistory ? 'history__open' : ''}`}>
             <div className={`history ${openHistory ? 'history__open' : ''}`}>
@@ -15,7 +15,7 @@ export function History (openHistory, historyHandler,history ) {
                     <p className="history__wind title">Wind</p>
                 </div>
                 <ul className="history__ul">
-                  {history.map((element) => (HistoryElement(element)))}
+                    {history.map((element) => (<HistoryElement {...element} />))}
                 </ul>
             </div>
         </div>
